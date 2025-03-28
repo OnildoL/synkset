@@ -4,8 +4,7 @@
 
 São as funcionalidades específicas que o sistema deve oferecer para atender às necessidades do usuário e cumprir os objetivos do negócio. Eles definem o que o sistema deve fazer.
 
-## Sistema:
-    ## 👨🏽 Usuários:
+## 👨🏽 Usuários:
     - [  ] | Deve ser capaz de cadastrar um usuário;
     - [  ] | Deve ser capaz de listar todos os usuários;
     - [  ] | Deve ser capaz de atualizar um usuário;
@@ -22,17 +21,15 @@ São as funcionalidades específicas que o sistema deve oferecer para atender à
 
 São as características do sistema que garantem sua qualidade e adequação ao uso, como a performance, segurança, usabilidade, escalabilidade, dentre outras. Eles definem como o sistema deve fazer.
 
-## Sistema:
-    ## 👨🏽 Usuários:
+## 👨🏽 Usuários:
     - [  ] | As informações devem ser armazenadas em banco de dados relacional;
-    - [  ] | A senha do usuário deve ser criptografada;
+    - [  ] | A senha do usuário deve ser hashed;
     - [  ] | O sistema deve registrar eventos no log;
 
 ## Regras de Negócio
 
 São as restrições, políticas, procedimentos e diretrizes que regem a operação do negócio. Elas definem as restrições e diretrizes que o sistema deve seguir para atender às necessidades do negócio e dos usuários.
 
-## Sistema:
-    ## 👨🏽 Usuários:
+## 👨🏽 Usuários:
     - [  ] | O número do usuário deve ser único, não podendo haver duplicidade na base de dados;
     - [  ] | O sistema deve limitar o número de tentativas de login falhas (ex: 3 tentativas), bloqueando o usuário temporariamente após exceder o limite;
