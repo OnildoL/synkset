@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\sers\onild\www\web\projects\synkset\tests;
+namespace tests;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
