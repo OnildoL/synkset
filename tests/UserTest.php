@@ -4,12 +4,28 @@ namespace tests;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use src\application\entities\errors\UserException;
 use src\application\entities\User;
+use src\application\usecases\UserUseCase;
+use src\application\entities\errors\UserException;
 use src\infrastructure\database\repositories\inMemory\InMemoryUserRepository;
 
 class UserTest extends TestCase
 {
+    private InMemoryUserRepository $repository;
+    private UserUseCase $userUseCase;
+
+    protected function setUp(): void
+    {
+        $this->repository = new InMemoryUserRepository;
+        $this->userUseCase = new UserUseCase($this->repository);
+    }
+
+    protected function tearDown(): void
+    {
+        unset($this->repository);
+        unset($this->userUseCase);
+    }
+
     public function testItShouldBeAbleToCreateaUser()
     {
         $user = new User(
@@ -21,13 +37,12 @@ class UserTest extends TestCase
             new DateTimeImmutable(),
             new DateTimeImmutable(),
             1
+
         );
 
-        $repository = new InMemoryUserRepository;
+        $this->userUseCase->create($user);
 
-        $repository->create($user);
-
-        $findByUser = $repository->findById($user->getId());
+        $findByUser = $this->repository->findById($user->getId());
 
         $this->assertNotNull($findByUser);
         $this->assertSame($user->getId(), $findByUser->getId());
@@ -37,9 +52,7 @@ class UserTest extends TestCase
     {
         $nonExistentUserId = 9999;
 
-        $repository = new InMemoryUserRepository;
-
-        $findByUser = $repository->findById($nonExistentUserId);
+        $findByUser = $this->repository->findById($nonExistentUserId);
 
         $this->assertNull($findByUser);
     }
@@ -57,11 +70,10 @@ class UserTest extends TestCase
             new DateTimeImmutable(),
             new DateTimeImmutable(),
             1
+
         );
 
-        $repository = new InMemoryUserRepository;
-
-        $repository->create($user);
-        $repository->create($user);
+        $this->userUseCase->create($user);
+        $this->userUseCase->create($user);
     }
 }
