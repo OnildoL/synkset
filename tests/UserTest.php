@@ -37,7 +37,6 @@ class UserTest extends TestCase
             new DateTimeImmutable(),
             new DateTimeImmutable(),
             1
-
         );
 
         $this->userUseCase->create($user);
@@ -70,7 +69,6 @@ class UserTest extends TestCase
             new DateTimeImmutable(),
             new DateTimeImmutable(),
             1
-
         );
 
         $this->userUseCase->create($user);

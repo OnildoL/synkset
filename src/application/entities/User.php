@@ -23,7 +23,7 @@ class User
         bool $isActive,
         DateTimeImmutable $createdAt,
         DateTimeImmutable $updatedAt,
-        ?int $id = null,
+        ?int $id = null
     ) {
         $this->setUsername($username);
         $this->setName($name);
@@ -60,7 +60,7 @@ class User
         return $this->email;
     }
 
-    public function isActive(): bool
+    public function getIsActive(): bool
     {
         return $this->isActive;
     }
