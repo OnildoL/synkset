@@ -12,29 +12,30 @@ class ProfileTest extends TestCase
 {
     private InMemoryProfileRepository $repository;
     private ProfileUseCase $profileUseCase;
+    private Profile $profile;
 
     protected function setUp(): void
     {
+        $this->profile = new Profile("Administrador", 1);
         $this->repository = new InMemoryProfileRepository;
         $this->profileUseCase = new ProfileUseCase($this->repository);
     }
 
     protected function tearDown(): void
     {
+        unset($this->profile);
         unset($this->repository);
         unset($this->profileUseCase);
     }
 
     public function testItShouldBeAbleToCreateaProfile()
     {
-        $profile = new Profile("Administrador", 1);
+        $this->profileUseCase->create($this->profile);
 
-        $this->profileUseCase->create($profile);
-
-        $findByProfile = $this->repository->findById($profile->getId());
+        $findByProfile = $this->repository->findById($this->profile->getId());
 
         $this->assertNotNull($findByProfile);
-        $this->assertSame($profile->getId(), $findByProfile->getId());
+        $this->assertSame($this->profile->getId(), $findByProfile->getId());
     }
 
     public function testItShouldReturnNullIfProfileDoesNotExist()
@@ -50,9 +51,7 @@ class ProfileTest extends TestCase
     {
         $this->expectException(ProfileException::class);
 
-        $profile = new Profile("Administrador", 1);
-
-        $this->profileUseCase->create($profile);
-        $this->profileUseCase->create($profile);
+        $this->profileUseCase->create($this->profile);
+        $this->profileUseCase->create($this->profile);
     }
 }

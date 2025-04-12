@@ -13,22 +13,11 @@ class CompanyTest extends TestCase
 {
     private InMemoryCompanyRepository $repository;
     private CompanyUseCase $companyUseCase;
+    private Company $company;
 
     protected function setUp(): void
     {
-        $this->repository = new InMemoryCompanyRepository;
-        $this->companyUseCase = new CompanyUseCase($this->repository);
-    }
-
-    protected function tearDown(): void
-    {
-        unset($this->repository);
-        unset($this->companyUseCase);
-    }
-
-    public function testItShouldBeAbleToCreateaCompany()
-    {
-        $company = new Company(
+        $this->company = new Company(
             "Nome da empresa LTDA",
             true,
             "111111111000111",
@@ -44,13 +33,25 @@ class CompanyTest extends TestCase
             new DateTimeImmutable(),
             1
         );
+        $this->repository = new InMemoryCompanyRepository;
+        $this->companyUseCase = new CompanyUseCase($this->repository);
+    }
 
-        $this->companyUseCase->create($company);
+    protected function tearDown(): void
+    {
+        unset($this->company);
+        unset($this->repository);
+        unset($this->companyUseCase);
+    }
 
-        $findByCompany = $this->repository->findById($company->getId());
+    public function testItShouldBeAbleToCreateaCompany()
+    {
+        $this->companyUseCase->create($this->company);
+
+        $findByCompany = $this->repository->findById($this->company->getId());
 
         $this->assertNotNull($findByCompany);
-        $this->assertSame($company->getId(), $findByCompany->getId());
+        $this->assertSame($this->company->getId(), $findByCompany->getId());
     }
 
     public function testItShouldReturnNullIfCompanyDoesNotExist()
@@ -66,24 +67,7 @@ class CompanyTest extends TestCase
     {
         $this->expectException(CompanyException::class);
 
-        $company = new Company(
-            "Nome da empresa LTDA",
-            true,
-            "111111111000111",
-            "Nome do endereço da empresa",
-            "1997",
-            "Shopping Manaíra",
-            "Cabedelo",
-            "São Paulo",
-            "SP",
-            58087000,
-            2132000000,
-            2132000000,
-            new DateTimeImmutable(),
-            1
-        );
-
-        $this->companyUseCase->create($company);
-        $this->companyUseCase->create($company);
+        $this->companyUseCase->create($this->company);
+        $this->companyUseCase->create($this->company);
     }
 }

@@ -13,22 +13,11 @@ class UserTest extends TestCase
 {
     private InMemoryUserRepository $repository;
     private UserUseCase $userUseCase;
+    private User $user;
 
     protected function setUp(): void
     {
-        $this->repository = new InMemoryUserRepository;
-        $this->userUseCase = new UserUseCase($this->repository);
-    }
-
-    protected function tearDown(): void
-    {
-        unset($this->repository);
-        unset($this->userUseCase);
-    }
-
-    public function testItShouldBeAbleToCreateaUser()
-    {
-        $user = new User(
+        $this->user = new User(
             "João",
             "João de sousa",
             "email@email.com",
@@ -38,13 +27,25 @@ class UserTest extends TestCase
             new DateTimeImmutable(),
             1
         );
+        $this->repository = new InMemoryUserRepository;
+        $this->userUseCase = new UserUseCase($this->repository);
+    }
 
-        $this->userUseCase->create($user);
+    protected function tearDown(): void
+    {
+        unset($this->user);
+        unset($this->repository);
+        unset($this->userUseCase);
+    }
 
-        $findByUser = $this->repository->findById($user->getId());
+    public function testItShouldBeAbleToCreateaUser()
+    {
+        $this->userUseCase->create($this->user);
+
+        $findByUser = $this->repository->findById($this->user->getId());
 
         $this->assertNotNull($findByUser);
-        $this->assertSame($user->getId(), $findByUser->getId());
+        $this->assertSame($this->user->getId(), $findByUser->getId());
     }
 
     public function testItShouldReturnNullIfUserDoesNotExist()
@@ -60,18 +61,7 @@ class UserTest extends TestCase
     {
         $this->expectException(UserException::class);
 
-        $user = new User(
-            "João",
-            "João de sousa",
-            "email@email.com",
-            "123",
-            true,
-            new DateTimeImmutable(),
-            new DateTimeImmutable(),
-            1
-        );
-
-        $this->userUseCase->create($user);
-        $this->userUseCase->create($user);
+        $this->userUseCase->create($this->user);
+        $this->userUseCase->create($this->user);
     }
 }
