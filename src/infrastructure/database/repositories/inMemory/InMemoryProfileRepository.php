@@ -30,4 +30,16 @@ class InMemoryProfileRepository implements ProfileInterface
     {
         return $this->profiles[$id] ?? null;
     }
+
+    public function findManyProfiles(): array
+    {
+        return array_values($this->profiles) ?? [];
+    }
+
+    public function update(Profile $profile): Profile
+    {
+        $this->profiles[$profile->getId()] = $profile;
+
+        return $profile;
+    }
 }

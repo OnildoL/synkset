@@ -27,4 +27,20 @@ class ProfileUseCase
 
         return $result;
     }
+
+    public function findManyProfiles(): array
+    {
+        return $this->profileInterface->findManyProfiles();
+    }
+
+    public function update(Profile $profile): Profile
+    {
+        $profileExist = $this->profileInterface->findById($profile->getId());
+
+        if (!$profileExist) {
+            throw new ProfileException("Perfil não encontrado.");
+        }
+
+        return $this->profileInterface->update($profile);
+    }
 }

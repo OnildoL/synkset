@@ -54,4 +54,30 @@ class ProfileTest extends TestCase
         $this->profileUseCase->create($this->profile);
         $this->profileUseCase->create($this->profile);
     }
+
+    public function testItShouldBeAbleToListAllProfiles()
+    {
+        $profile1 = new Profile("Administrador", 1);
+        $profile2 = new Profile("Coordenador", 2);
+
+        $this->profileUseCase->create($profile1);
+        $this->profileUseCase->create($profile2);
+
+        $profiles = $this->profileUseCase->findManyProfiles();
+
+        $this->assertCount(2, $profiles);
+        $this->assertEquals("Administrador", $profiles[0]->getName());
+        $this->assertEquals("Coordenador", $profiles[1]->getName());
+    }
+
+    public function testItShouldBeAbleToUpdateaProfile()
+    {
+        $this->profileUseCase->create($this->profile);
+
+        $updateProfile = new Profile("Coordenador", 1);
+
+        $this->profileUseCase->update($updateProfile);
+
+        $this->assertEquals("Coordenador", $updateProfile->getName());
+    }
 }
