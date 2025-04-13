@@ -30,4 +30,16 @@ class InMemoryUserRepository implements UserInterface
     {
         return $this->users[$id] ?? null;
     }
+
+    public function findManyUsers(): array
+    {
+        return array_values($this->users) ?? [];
+    }
+
+    public function update(User $user): User
+    {
+        $this->users[$user->getId()] = $user;
+
+        return $user;
+    }
 }

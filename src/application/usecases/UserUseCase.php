@@ -27,4 +27,20 @@ class UserUseCase
 
         return $result;
     }
+
+    public function findManyUsers(): array
+    {
+        return $this->userInterface->findManyUsers();
+    }
+
+    public function update(User $user): User
+    {
+        $userExist = $this->userInterface->findById($user->getId());
+
+        if (!$userExist) {
+            throw new UserException("Usuário não encontrado.");
+        }
+
+        return $this->userInterface->update($user);
+    }
 }

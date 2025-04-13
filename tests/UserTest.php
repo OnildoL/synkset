@@ -64,4 +64,30 @@ class UserTest extends TestCase
         $this->userUseCase->create($this->user);
         $this->userUseCase->create($this->user);
     }
+
+    public function testItShouldBeAbleToListAllUsers()
+    {
+        $user1 = new User("user1", "João de sousa", "email@email.com", "123", true, new DateTimeImmutable(), new DateTimeImmutable(), 1);
+        $user2 = new User("user2", "João de sousa", "email@email.com", "123", true, new DateTimeImmutable(), new DateTimeImmutable(), 2);
+
+        $this->userUseCase->create($user1);
+        $this->userUseCase->create($user2);
+
+        $users = $this->userUseCase->findManyUsers();
+
+        $this->assertCount(2, $users);
+        $this->assertEquals("user1", $users[0]->getUserName());
+        $this->assertEquals("user2", $users[1]->getUserName());
+    }
+
+    public function testItShouldBeAbleToUpdateaUser()
+    {
+        $this->userUseCase->create($this->user);
+
+        $updateUser = new User("user1", "Nome alterado", "email@email.com", "123", true, new DateTimeImmutable(), new DateTimeImmutable(), 1);
+
+        $this->userUseCase->update($updateUser);
+
+        $this->assertEquals("Nome alterado", $updateUser->getName());
+    }
 }
