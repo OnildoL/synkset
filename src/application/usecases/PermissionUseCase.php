@@ -27,4 +27,20 @@ class PermissionUseCase
 
         return $result;
     }
+
+    public function findManyPermissions(): array
+    {
+        return $this->permissionInterface->findManyPermissions();
+    }
+
+    public function update(Permission $permission): Permission
+    {
+        $permissionExist = $this->permissionInterface->findById($permission->getId());
+
+        if (!$permissionExist) {
+            throw new PermissionException("Permissão não encontrada.");
+        }
+
+        return $this->permissionInterface->update($permission);
+    }
 }

@@ -30,4 +30,16 @@ class InMemoryPermissionRepository implements PermissionInterface
     {
         return $this->permissions[$id] ?? null;
     }
+
+    public function findManyPermissions(): array
+    {
+        return array_values($this->permissions) ?? [];
+    }
+
+    public function update(Permission $permission): Permission
+    {
+        $this->permissions[$permission->getId()] = $permission;
+
+        return $permission;
+    }
 }

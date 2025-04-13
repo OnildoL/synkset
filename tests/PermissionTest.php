@@ -54,4 +54,30 @@ class PermissionTest extends TestCase
         $this->permissionUseCase->create($this->permission);
         $this->permissionUseCase->create($this->permission);
     }
+
+    public function testItShouldBeAbleToListAllPermissions()
+    {
+        $permission1 = new Permission("products", "Produtos", 1);
+        $permission2 = new Permission("notes", "Notas", 2);
+
+        $this->permissionUseCase->create($permission1);
+        $this->permissionUseCase->create($permission2);
+
+        $permissions = $this->permissionUseCase->findManyPermissions();
+
+        $this->assertCount(2, $permissions);
+        $this->assertEquals("products", $permissions[0]->getName());
+        $this->assertEquals("notes", $permissions[1]->getName());
+    }
+
+    public function testItShouldBeAbleToUpdateaPermission()
+    {
+        $this->permissionUseCase->create($this->permission);
+
+        $updatePermission = new Permission("notes", "Notas", 1);
+
+        $this->permissionUseCase->update($updatePermission);
+
+        $this->assertEquals("notes", $updatePermission->getName());
+    }
 }
