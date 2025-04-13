@@ -70,4 +70,30 @@ class CompanyTest extends TestCase
         $this->companyUseCase->create($this->company);
         $this->companyUseCase->create($this->company);
     }
+
+    public function testItShouldBeAbleToListAllCompanies()
+    {
+        $company1 = new Company("company1 LTDA", true, "111111111000111", "Nome do endereço da empresa", "1997", "Shopping Manaíra", "Cabedelo", "São Paulo", "SP", 58087000, 2132000000, 2132000000, new DateTimeImmutable(), 1);
+        $company2 = new Company("company2 LTDA", true, "222222222000222", "Nome do endereço da empresa", "1997", "Shopping Manaíra", "Cabedelo", "São Paulo", "SP", 58087000, 2132000000, 2132000000, new DateTimeImmutable(), 2);
+
+        $this->companyUseCase->create($company1);
+        $this->companyUseCase->create($company2);
+
+        $companies = $this->companyUseCase->findManyCompanies();
+
+        $this->assertCount(2, $companies);
+        $this->assertEquals("company1 LTDA", $companies[0]->getName());
+        $this->assertEquals("company2 LTDA", $companies[1]->getName());
+    }
+
+    public function testItShouldBeAbleToUpdateaCompany()
+    {
+        $this->companyUseCase->create($this->company);
+
+        $updateCompany = new Company("company2 LTDA", true, "222222222000222", "Nome do endereço da empresa", "1997", "Shopping Manaíra", "Cabedelo", "São Paulo", "SP", 58087000, 2132000000, 2132000000, new DateTimeImmutable(), 1);
+
+        $this->companyUseCase->update($updateCompany);
+
+        $this->assertEquals("222222222000222", $updateCompany->getCnpj());
+    }
 }

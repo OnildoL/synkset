@@ -27,4 +27,21 @@ class CompanyUseCase
 
         return $result;
     }
+
+
+    public function findManyCompanies(): array
+    {
+        return $this->companyInterface->findManyCompanies();
+    }
+
+    public function update(Company $company): Company
+    {
+        $companyExist = $this->companyInterface->findById($company->getId());
+
+        if (!$companyExist) {
+            throw new CompanyException("Empresa não encontrada.");
+        }
+
+        return $this->companyInterface->update($company);
+    }
 }
