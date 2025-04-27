@@ -6,8 +6,8 @@ São as funcionalidades específicas que o sistema deve oferecer para atender à
 
 ## 👨🏽 Usuários:
     - [x] | Deve ser capaz de cadastrar um usuário;
-    - [  ] | Deve ser capaz de listar todos os usuários;
-    - [  ] | Deve ser capaz de atualizar um usuário;
+    - [x] | Deve ser capaz de listar todos os usuários;
+    - [x] | Deve ser capaz de atualizar um usuário;
     - [  ] | Deve ser capaz de consultar todas as permissões;
     - [  ] | Deve ser capaz de fazer filtragens;
     - [  ] | Deve ser capaz de paginar caso ultrapasse 10 registros;
@@ -19,23 +19,44 @@ São as funcionalidades específicas que o sistema deve oferecer para atender à
 
 ## 🏣 Empresas:
     - [x] | Deve ser capaz de cadastrar uma empresa;
-    - [  ] | Deve ser capaz de listar todos as empresas;
-    - [  ] | Deve ser capaz de atualizar uma empresa;
+    - [x] | Deve ser capaz de listar todos as empresas;
+    - [x] | Deve ser capaz de atualizar uma empresa;
     - [  ] | Deve ser capaz de fazer filtragens;
     - [  ] | Deve ser capaz de paginar caso ultrapasse 10 registros;
 
 ## 🔒 Permissões:
     - [x] | Deve ser capaz de cadastrar uma permissão;
-    - [  ] | Deve ser capaz de listar todos as permissões;
-    - [  ] | Deve ser capaz de atualizar uma permissão;
+    - [x] | Deve ser capaz de listar todos as permissões;
+    - [x] | Deve ser capaz de atualizar uma permissão;
     - [  ] | Deve ser capaz de fazer filtragens;
     - [  ] | Deve ser capaz de paginar caso ultrapasse 10 registros;
 
 ## 👨🏽‍💼 Perfis:
     - [x] | Deve ser capaz de criar um perfil;
-    - [  ] | Deve ser capaz de listar todos os perfis;
-    - [  ] | Deve ser capaz de atualizar um perfil;
-    - [  ] | Deve ser capaz de atribuir permissões ao perfil criado;
+    - [x] | Deve ser capaz de listar todos os perfis;
+    - [x] | Deve ser capaz de atualizar um perfil;
+    - [x] | Deve ser capaz de atribuir permissões ao perfil criado;
+
+## 🏭 Fornecedores:
+    - [  ] | Deve ser capaz de cadastrar um fornecedor;
+    - [  ] | Deve ser capaz de listar todos os fornecedores;
+    - [  ] | Deve ser capaz de atualizar um fornecedor;
+    - [  ] | Deve ser capaz de fazer filtragens;
+    - [  ] | Deve ser capaz de paginar caso ultrapasse 10 registros;
+
+## 📦 Produtos:
+    - [  ] | Deve ser capaz de cadastrar um produto;
+    - [  ] | Deve ser capaz de listar todos produtos;
+    - [  ] | Deve ser capaz de atualizar o cadastro de um produto;
+    - [  ] | Deve ser capaz de fazer filtragens;
+    - [  ] | Deve ser capaz de paginar caso ultrapasse 10 registros;
+
+## 📰 Notas fiscais:
+    - [  ] | Deve ser capaz de cadastrar uma nota fiscal e seus produtos;
+    - [  ] | Deve ser capaz de listar todas as notas fiscais;
+    - [  ] | Deve ser capaz de atualizar uma nota fiscal;
+    - [  ] | Deve ser capaz de fazer filtragens;
+    - [  ] | Deve ser capaz de paginar caso ultrapasse 10 registros;
 
 ## Requisitos Não Funcionais
 
