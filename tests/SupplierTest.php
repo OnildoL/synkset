@@ -93,10 +93,10 @@ class SupplierTest extends TestCase
     {
         $this->supplierUseCase->create($this->supplier);
 
-        $updateSupplier = new Supplier("Alpha Supplies LTDA", "Alpha Supplies", "12345678000123", "123456789", "987654321", "contact@alphasupplies.com", "11987654321", "Rua das Indústrias", "200", "Bloco A", "Industrial", "Rio de Janeiro", "RJ", "20040030", true, new DateTimeImmutable(), 1);
+        $updateSupplier = new Supplier("Alpha Supplies LTDA", "Nome do fornecedor alterado", "12345678000123", "123456789", "987654321", "contact@alphasupplies.com", "11987654321", "Rua das Indústrias", "200", "Bloco A", "Industrial", "Rio de Janeiro", "RJ", "20040030", true, new DateTimeImmutable(), 1);
 
         $this->supplierUseCase->update($updateSupplier);
 
-        $this->assertEquals("12345678000123", $updateSupplier->getCnpj());
+        $this->assertEquals("Nome do fornecedor alterado", $updateSupplier->getTradeName());
     }
 }
