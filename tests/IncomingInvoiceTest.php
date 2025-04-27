@@ -31,17 +31,21 @@ class IncomingInvoiceTest extends TestCase
         $this->supplierRepository->create(new Supplier("Tech Supplies LTDA", "Tech Supplies", "12345678901234", "123456789", "987654321", "contact@techsupplies.com", "11987654321", "Rua das Empresas", "100", "Sala 10", "Centro", "São Paulo", "SP", "01001000", true, new DateTimeImmutable(), 1));
     }
 
+    private function createDefaultIncomingInvoice(): void
+    {
+        $this->incomingInvoice = new IncomingInvoice(1, 1, "12345", "001", "987654321", "12345678901234567890123456789012345678901234", new DateTimeImmutable(), new DateTimeImmutable(), 100000, 105000, 5000, "Etiqueta123", "Aprovada", false, "Nota fiscal referente à compra de equipamentos.", new DateTimeImmutable(), new DateTimeImmutable(), 1);
+    }
+
     protected function setUp(): void
     {
         $this->companyRepository = new InMemoryCompanyRepository;
         $this->supplierRepository = new InMemorySupplierRepository;
         $this->incomingInvoiceRepository = new InMemoryIncomingInvoiceRepository;
+        $this->incomingInvoiceUseCase = new incomingInvoiceUseCase($this->incomingInvoiceRepository);
 
         $this->createDefaultCompany();
         $this->createDefaultSupplier();
-
-        $this->incomingInvoiceUseCase = new incomingInvoiceUseCase($this->incomingInvoiceRepository);
-        $this->incomingInvoice = new IncomingInvoice(1, 1, "12345", "001", "987654321", "12345678901234567890123456789012345678901234", new DateTimeImmutable(), new DateTimeImmutable(), 100000, 105000, 5000, "Etiqueta123", "Aprovada", false, "Nota fiscal referente à compra de equipamentos.", new DateTimeImmutable(), new DateTimeImmutable(), 1);
+        $this->createDefaultIncomingInvoice();
     }
 
     public function testItShouldBeAbleToCreateaIncomingInvoice()
