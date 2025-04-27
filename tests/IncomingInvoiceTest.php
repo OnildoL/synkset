@@ -90,10 +90,10 @@ class IncomingInvoiceTest extends TestCase
     {
         $this->incomingInvoiceUseCase->create($this->incomingInvoice);
 
-        $updateIncomingInvoice = new IncomingInvoice(1, 1, "12345", "001", "987654321", "12345678901234567890123456789012345678901234", new DateTimeImmutable(), new DateTimeImmutable(), 100000, 105000, 5000, "Etiqueta123", "Aprovada", false, "Nota fiscal referente à compra de equipamentos.", new DateTimeImmutable(), new DateTimeImmutable(), 1);
+        $updateIncomingInvoice = new IncomingInvoice(1, 1, "12345", "001", "987654321", "12345678901234567890123456789012345678901234", new DateTimeImmutable(), new DateTimeImmutable(), 100000, 105000, 5000, "Etiqueta123", "Aprovada", false, "Observações alteradas com sucesso", new DateTimeImmutable(), new DateTimeImmutable(), 1);
 
         $this->incomingInvoiceUseCase->update($updateIncomingInvoice);
 
-        $this->assertEquals("12345678901234567890123456789012345678901234", $updateIncomingInvoice->getAccessKey());
+        $this->assertEquals("Observações alteradas com sucesso", $updateIncomingInvoice->getObservation());
     }
 }
